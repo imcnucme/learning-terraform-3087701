@@ -29,8 +29,9 @@ resource "aws_instance" "blog" {
 }
 
 resource "aws_security_group" "blog" {
-  name = "blog"
-  tags = {
+  name        = "blog"
+  description = "Allow http and https in. Allow everything out"
+  tags        = {
     Terraform = "true"
   }
   vpc_id = data.aws_vpc.default.id
@@ -42,6 +43,7 @@ resource "aws_security_group_rule" "blog_http_in" {
   to_port     = 80
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
+ 
   security_group_id = aws_security_group.blog.id
 }
 
