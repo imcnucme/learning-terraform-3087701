@@ -53,17 +53,10 @@ egress_cidr_blocks = ["0.0.0.0/0"]
 resource "aws_instance" "blog" {
   ami                   = data.aws_ami.app_ami.id
   instance_type         = var.instance_type
-  vpc_security_group_ids = [module.blog_sg.this_security_group_id]
-  ami                    = data.aws_ami.app_ami.id
-  instance_type          = var.instance_type
   vpc_security_group_ids = [module.blog_sg.security_group_id]
+  subnet_id             = module.My_Blog_vpc.public_subnets[0]
 
-
-
-subnet_id = module.My_Blog_vpc.public_subnets[0]
-
-tags = {
-Name = "HelloWorld"
+  tags = {
+    Name = "HelloWorld"
+  }
 }
-}
-
