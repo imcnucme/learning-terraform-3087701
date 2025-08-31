@@ -1,4 +1,4 @@
-# Get the latest Bitnami Tomcat AMI
+# Lookup latest Bitnami Tomcat AMI
 data "aws_ami" "app_ami" {
   most_recent = true
 
@@ -13,13 +13,6 @@ data "aws_ami" "app_ami" {
   }
 
   owners = ["979382823631"] # Bitnami
-}
-
-# Declare instance_type variable
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-  default     = "t3.micro"
 }
 
 # VPC Module
@@ -56,10 +49,10 @@ module "blog_sg" {
 
 # EC2 Instance
 resource "aws_instance" "blog" {
-  ami                    = data.aws_ami.app_ami.id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [module.blog_sg.security_group_id]
-  subnet_id              = module.My_Blog_vpc.public_subnets[0]
+  ami                         = data.aws_ami.app_ami.id
+  instance_type               = var.instance_type
+  vpc_security_group_ids      = [module.blog_sg.security_group_id]
+  subnet_id                   = module.My_Blog_vpc.public_subnets[0]
   associate_public_ip_address = true
 
   tags = {
