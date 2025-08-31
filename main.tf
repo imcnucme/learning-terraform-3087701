@@ -24,7 +24,7 @@ module "My_Blog_vpc" {
   name = "dev"
   cidr = "10.0.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  azs             = ["us-west-2a", "us-west-2b", "us-west-2c"]
   
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
@@ -51,10 +51,9 @@ module "blog_sg" {
 }
 
 resource "aws_instance" "blog" {
-  ami                    = data.aws_ami.app_ami.id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [module.blog_sg.security_group_id]
-
+  ami                   = data.aws_ami.app_ami.id
+  instance_type         = var.instance_type
+  vpc_security_group_ids = [module.blog_sg.this_security_group_id]
 
 
  subnet_id = module.My_Blog_vpc.public_subnets[0]
