@@ -41,7 +41,7 @@ resource "aws_instance" "blog" {
   subnet_id = module.blog_vpc.public_subnets[0]
 
   tags = {
-  name = "Learning Terraform"
+  name = "Learning Terraform_"
   }
 }
 module "blog_sg" {
