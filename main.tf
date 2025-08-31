@@ -38,9 +38,10 @@ resource "aws_instance" "blog" {
   subnet_id                   = module.My_Blog_vpc.public_subnets[0]
   associate_public_ip_address = true  
 
+  subnet_id = module.blog_vpc.public_subnets[0]
 
   tags = {
-    Name = "HelloWorld"
+  name = "Learning Terraform"
   }
 }
 module "blog_sg" {
@@ -51,9 +52,9 @@ description = "Security group for blog instance"
 
 
 vpc_id              = module.My_Blog_vpc.vpc_id
+name                = "My_Blog
 ingress_rules       = ["http-80-tcp","https-443-tcp"]
 ingress_cidr_blocks = ["0.0.0.0/0"]
-
 
 egress_rules       = ["all-all"]
 egress_cidr_blocks = ["0.0.0.0/0"]
