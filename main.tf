@@ -48,8 +48,12 @@ resource "aws_instance" "blog" {
     Name = "HelloWorld"
   }
 }
+<<<<<<< HEAD
+=======
 
 
 
 
 
+
+>>>>>>> 3209c7f3aeaf161875ae2f7a43c9c1efe5c589
