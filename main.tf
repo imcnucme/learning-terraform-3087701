@@ -34,7 +34,7 @@ module "My_Blog_vpc" {
 # Security Group Module
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 6.0"
+  version = "5.3.0"
 
   name        = "My_Blog"
   description = "Security group for blog instance"
