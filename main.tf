@@ -88,7 +88,7 @@ module "alb" {
     }
   }
 
-  listeners = [
+  listeners = {
     {
       port     = 80
       protocol = "HTTP"
@@ -97,7 +97,7 @@ module "alb" {
         target_group_key = "blog"
       }
     }
-  ]
+  }
 
   tags = {
     Environment = "Dev"
