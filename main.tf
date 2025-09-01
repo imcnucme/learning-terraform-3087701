@@ -90,7 +90,6 @@ module "alb" {
 
   listeners = [
     {
-    http = {
       port     = 80
       protocol = "HTTP"
 
@@ -98,7 +97,6 @@ module "alb" {
         target_group_key = "blog"
       }
     }
-  }
   ]
 
   tags = {
