@@ -97,22 +97,8 @@ module "alb" {
       cidr_ipv4   = "10.0.0.0/16"
     }
   }
-  
-  listeners = {
-    http = {
-    port     = 80
-    protocol = "HTTP"
-    forward = {
-      target_group_key = "blog-tg"
-    }
-  }
-  }
-  }
-  
 
-
-
-  target_groups = {
+    target_groups = {
     blog-tg = {
       name_prefix              = "blog"
       backend_protocol         = "HTTP"
@@ -125,6 +111,19 @@ module "alb" {
     }
       ]   
   }
+
+
+  listeners = {
+    http = {
+    port     = 80
+    protocol = "HTTP"
+    forward = {
+      target_group_key = "blog-tg"
+    }
+  }
+  }
+  }
+  
 
 
   # tags = {
