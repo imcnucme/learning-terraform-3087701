@@ -101,11 +101,10 @@ module "alb" {
   }
   
 
-  listeners = [
-  {
+  listeners = {
+    http = {
     port     = 80
     protocol = "HTTP"
-
     forward = {
       target_group_key = "blog-tg"
     }
@@ -117,7 +116,7 @@ module "alb" {
       name_prefix              = "blog"
       backend_protocol         = "HTTP"
       backend_port             = 80
-      target_type.             = "instance"
+      target_type              = "instance"
       targets = [
         {
       target_id        = aws_instance.blog.id
