@@ -72,32 +72,8 @@ module "alb" {
   subnets            = module.My_Blog_vpc.public_subnets
   security_groups    = [module.blog_sg.security_group_id]
 
-  load_balancer_security_group_ingress_rules = {
-    all_http = {
-      from_port   = 80
-      to_port     = 80
-      ip_protocol = "tcp"
-      description = "HTTP web traffic"
-      cidr_ipv4   = "0.0.0.0/0"
-    }
-    all_https = {
-      from_port   = 443
-      to_port     = 443
-      ip_protocol = "tcp"
-      description = "HTTPS web traffic"
-      cidr_ipv4   = "0.0.0.0/0"
-    }
-  }
-
-  load_balancer_security_group_egress_rules = {
-    all = {
-      ip_protocol = "-1"
-      cidr_ipv4   = "10.0.0.0/16"
-    }
-  }
-
   target_groups = {
-    blog-tg = {
+    blog = {
       name_prefix      = "blog"
       backend_protocol = "HTTP"
       backend_port     = 80
@@ -112,17 +88,21 @@ module "alb" {
     }
   }
 
-  listeners_http = {
+  listeners = [
+    {
     http = {
       port     = 80
       protocol = "HTTP"
+
       forward = {
         target_group_key = "blog-tg"
       }
     }
   }
+  ]
 
   tags = {
     Environment = "Dev"
   }
 }
+
