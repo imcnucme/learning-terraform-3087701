@@ -97,10 +97,7 @@ module "alb" {
       cidr_ipv4   = "10.0.0.0/16"
     }
   }
-
-  }
   
-
   listeners = {
     http = {
     port     = 80
@@ -110,6 +107,10 @@ module "alb" {
     }
   }
   }
+  }
+  
+
+
 
   target_groups = {
     blog-tg = {
