@@ -72,7 +72,7 @@ module "alb" {
   subnets            = module.My_Blog_vpc.public_subnets
   security_groups    = [module.blog_sg.security_group_id]
 
-  security_group_ingress_rules = {
+  load_balancer_security_group_ingress_rules = {
     all_http = {
       from_port   = 80
       to_port     = 80
@@ -89,7 +89,7 @@ module "alb" {
     }
   }
 
-  security_group_egress_rules = {
+  load_balancer_security_group_egress_rules = {
     all = {
       ip_protocol = "-1"
       cidr_ipv4   = "10.0.0.0/16"
@@ -112,7 +112,7 @@ module "alb" {
     }
   }
 
-  listeners = {
+  listeners_http = {
     http = {
       port     = 80
       protocol = "HTTP"
