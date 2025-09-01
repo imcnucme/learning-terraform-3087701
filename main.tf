@@ -100,25 +100,34 @@ module "alb" {
 
   }
   
-  http_tcp_listeners = [
-    {
-      port                 = 80
-      protocol             = "HTTP"
-      target_group_index   = 0
-    }  
-  ]
 
-  target_groups = {
-    ex-instance = {
-      name_prefix      = "blog"
-      protocol         = "HTTP"
-      port             = 80
-      target_type      = "instance"
-      target_id        = aws_instance.blog.id
+  listeners = [
+  {
+    port     = 80
+    protocol = "HTTP"
+
+    forward = {
+      target_group_key = "blog-tg"
     }
   }
+]
 
-  tags = {
+  target_groups = {
+    blog-tg = {
+      name_prefix              = "blog"
+      backend_protocol         = "HTTP"
+      backend_port             = 80
+      target_type.             = "instance"
+      targets = [
+        {
+      target_id        = aws_instance.blog.id
+      port             = 80
+    }
+      ]   
+  }
+
+
+  # tags = {
     Environment = "Dev"
   }
 }
