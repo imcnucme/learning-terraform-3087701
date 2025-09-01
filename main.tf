@@ -109,7 +109,7 @@ module "alb" {
       target_group_key = "blog-tg"
     }
   }
-]
+  }
 
   target_groups = {
     blog-tg = {
