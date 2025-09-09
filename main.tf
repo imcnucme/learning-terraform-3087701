@@ -65,13 +65,11 @@ module "alb" {
       port                   = 80
       protocol               = "HTTP"
       default_action = {
-        {
-      type                    = "forward"
+        type                    = "forward"
       target_group_index      = 0
         }
       } 
-    }
-  ]
+   ]
 
   target_groups = [
     {
