@@ -87,6 +87,9 @@ module "alb" {
     {
       port                   = 80
       protocol               = "HTTP"
+      default action = {
+        type = forward
+      }
       target_group_index     = 0
     }
   ]
@@ -95,12 +98,12 @@ module "alb" {
     {
       name_prefix      = "blog"
       protocol         = "HTTP"
-      port             = 80
+      port             = 8080
       target_type      = "instance"
       targets = [
         {
-          target      = aws_instance.blog.id
-          port        = 80
+          target_id      = aws_instance.blog.id
+          port        = 8080
         }
       ] 
     }
