@@ -58,18 +58,17 @@ module "alb" {
   vpc_id              = module.blog_vpc.vpc_id
   subnets             = module.blog_vpc.public_subnets
   security_groups     = [module.blog_sg.security_group_id]
-  
+
 
   listeners = [
     {
       port                   = 80
       protocol               = "HTTP"
-      default_action = [
+      default_action = {
         {
       type                    = "forward"
       target_group_index      = 0
         }
-      ]
     }
   ]
 
@@ -81,8 +80,8 @@ module "alb" {
       target_type      = "instance"
       targets = [
         {
-          target         = aws_instance.blog.id
-          port           = 8080
+          target_id         = aws_instance.blog.id
+          port              = 8080
         }
       ] 
     }
