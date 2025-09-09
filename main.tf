@@ -50,6 +50,7 @@ resource "aws_instance" "blog" {
 
 module "alb" {
   source = "terraform-aws-modules/alb/aws"
+  version = "9.3.0"
 
   name                = "blog-alb"
 
@@ -88,9 +89,10 @@ module "alb" {
       port                   = 80
       protocol               = "HTTP"
       default_action = {
-        type = "forward"
-      }
+      type                    = "forward"
       target_group_index     = 0
+
+      }
     }
   ]
 
