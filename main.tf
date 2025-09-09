@@ -53,8 +53,7 @@ module "alb" {
   version = "9.3.0"
 
   name                = "blog-alb"
-
-  load_balancer_type = "application"
+  load_balancer_type  = "application"
 
   vpc_id              = module.blog_vpc.vpc_id
   subnets             = module.blog_vpc.public_subnets
@@ -91,7 +90,7 @@ module "alb" {
       default_action = [
         {
       type                    = "forward"
-      target_group_index     = 0
+      target_group_index      = 0
         }
       ]
     }
