@@ -69,6 +69,7 @@ module "alb" {
       type                    = "forward"
       target_group_index      = 0
         }
+      } 
     }
   ]
 
