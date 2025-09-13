@@ -17,6 +17,8 @@ data "aws_ami" "app_ami" {
 module "autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "9.0.1"
+
+  associate_public_ip_address = true
   
   name      = "blog"
   min_size  = 1
