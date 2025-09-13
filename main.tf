@@ -20,8 +20,6 @@ resource "aws_instance" "blog" {
   subnet_id     = module.blog_vpc.public_subnets[0]
   vpc_security_group_ids = [module.blog_sg.security_group_id]
 
-  subnet_id = module.blog_vpc.public_subnets[0]
-
   tags = {
     Name = "blog-instance"
     Environment = "dev"
