@@ -24,7 +24,6 @@ module "autoscaling" {
   max_size            = 2
   vpc_zone_identifier = module.blog_vpc.public_subnets
 
-  name           = "blog"
 
   instance_type       = var.instance_type
   image_id            = data.aws_ami.app_ami.id
