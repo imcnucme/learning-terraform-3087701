@@ -25,17 +25,19 @@ module "autoscaling" {
   vpc_zone_identifier = module.blog_vpc.public_subnets
   security_groups     = [module.blog_tsg.security_group_id]
   
-  launch_template = {
+  launch_template = [
+  {
     name = "blog_template"
 
     network_interfaces = [{
       associate_public_ip_address = true
       security_groups             = [module.blog_tsg.security_group_id]
     }]
+
      image_id      = data.aws_ami.app_ami.id
      instance_type = var.instance_type
     }
-  }
+  ]
   
 module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
