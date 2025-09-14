@@ -25,8 +25,13 @@ module "autoscaling" {
   vpc_zone_identifier = module.blog_vpc.public_subnets
   security_groups     = [module.blog_sg.security_group_id]
 
-  image_id      = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
+
+  launch_template = {
+    image_id.                   = data.aws_ami.app_ami.id
+    instance_type               = var.instance_type
+    associate_public_ip_address = true
+
+  }
 }
 
 module "blog_alb" {
