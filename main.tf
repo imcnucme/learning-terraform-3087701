@@ -24,9 +24,18 @@ module "autoscaling" {
   max_size            = 2
   vpc_zone_identifier = module.blog_vpc.public_subnets
   target_group_arns   = module.blog_alb.target_group_arns
-  security_groups     = [module.blog_sg.security_group_id]
+
+launch_templates = {
+  name           = "blog"
+
   instance_type       = var.instance_type
   image_id            = data.aws_ami.app_ami.id
+  security_groups     = [module.blog_sg.security_group_id]
+
+network_interfaces = [{
+  associate_public_ip_address = true
+ }]
+}
 }
   
 module "blog_alb" {
