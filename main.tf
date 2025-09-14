@@ -27,7 +27,7 @@ module "autoscaling" {
 
 
   launch_template = {
-    image_id.                   = data.aws_ami.app_ami.id
+    image_id                    = data.aws_ami.app_ami.id
     instance_type               = var.instance_type
     associate_public_ip_address = true
 
