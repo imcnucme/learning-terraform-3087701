@@ -30,7 +30,7 @@ module "autoscaling" {
   security_groups     = [module.blog_sg.security_group_id]
 
 network_interfaces = [{
-  associate_public_ip_address = true
+  associate_public_ip_address = false
  }]
 }
   
