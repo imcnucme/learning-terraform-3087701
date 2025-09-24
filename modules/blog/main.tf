@@ -29,7 +29,7 @@ module "autoscaling" {
   image_id            = data.aws_ami.app_ami.id
   security_groups     = [module.blog_sg.security_group_id]
 
-network_interfaces = [{
+           network_interfaces = [{
   associate_public_ip_address = false
  }]
 }
